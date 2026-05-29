@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cat Healing 🐱</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    overflow:hidden;
+    height:100vh;
+    background:linear-gradient(135deg,#d8f2ff,#ccecff,#e6f8ff,#b9e1ff);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    position:relative;
+    transition:1s;
+
+    will-change:transform;
+}
+
+/* blur bg */
+
+.blur1,.blur2,.blur3{
+    position:absolute;
+    border-radius:50%;
+    filter:blur(50px);
+    opacity:.5;
+}
+
+.blur1{
+    width:250px;
+    height:250px;
+    background:#8fd8ff;
+    top:-60px;
+    left:-50px;
+}
+
+.blur2{
+    width:250px;
+    height:250px;
+    background:#ffffff;
+    bottom:-80px;
+    right:-70px;
+}
+
+.blur3{
+    width:180px;
+    height:180px;
+    background:#bde8ff;
+    top:45%;
+    left:50%;
+    transform:translate(-50%,-50%);
+}
+
+/* floating cat optimized */
+
+.floating-cat{
+    position:absolute;
+    font-size:22px;
+    opacity:.5;
+    pointer-events:none;
+
+    animation:floatCat linear infinite;
+
+    will-change:transform;
+    transform:translateZ(0);
+}
+
+@keyframes floatCat{
+
+    from{
+        transform:translate3d(0,100vh,0);
+    }
+
+    to{
+        transform:translate3d(0,-120vh,0);
+    }
+
+}
+
+.container{
+    width:92%;
+    max-width:430px;
+    background:rgba(255,255,255,.25);
+    backdrop-filter:blur(18px);
+    border:1px solid rgba(255,255,255,.4);
+    border-radius:35px;
+    padding:28px;
+    text-align:center;
+    z-index:10;
+    box-shadow:0 10px 40px rgba(0,0,0,.08);
+    animation:fade .8s ease;
+}
+
+@keyframes fade{
+
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+.title{
+    font-size:30px;
+    font-weight:700;
+    color:#53ace0;
+}
+
+.subtitle{
+    margin-top:8px;
+    font-size:14px;
+    color:#5b6c7b;
+    line-height:1.7;
+}
+
+.cat-avatar{
+    margin-top:20px;
+    font-size:95px;
+    animation:bounce 2s infinite;
+    cursor:pointer;
+    user-select:none;
+    transition:.3s;
+}
+
+@keyframes bounce{
+
+    0%,100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-10px);
+    }
+
+}
+
+.message-box{
+    margin-top:18px;
+    background:rgba(255,255,255,.45);
+    padding:18px;
+    border-radius:22px;
+    min-height:120px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    line-height:1.7;
+    color:#445;
+    font-size:15px;
+}
+
+.btn-group{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    justify-content:center;
+    margin-top:18px;
+}
+
+button{
+    border:none;
+    padding:12px 18px;
+    border-radius:999px;
+    background:linear-gradient(135deg,#69c8ff,#89d8ff);
+    color:white;
+    font-weight:600;
+    cursor:pointer;
+    transition:.3s;
+    box-shadow:0 8px 20px rgba(105,200,255,.3);
+}
+
+button:hover{
+    transform:scale(1.05);
+}
+
+.progress-area{
+    margin-top:24px;
+}
+
+.progress-text{
+    font-size:13px;
+    color:#5c6d7d;
+    margin-bottom:8px;
+}
+
+.progress{
+    width:100%;
+    height:14px;
+    background:rgba(255,255,255,.7);
+    border-radius:999px;
+    overflow:hidden;
+}
+
+.progress-bar{
+    width:10%;
+    height:100%;
+    background:linear-gradient(90deg,#67c6ff,#b5ecff);
+    transition:1s;
+}
+
+.quote{
+    margin-top:18px;
+    font-size:13px;
+    color:#678;
+    font-style:italic;
+}
+
+.footer{
+    margin-top:20px;
+    font-size:12px;
+    color:#5d7080;
+    line-height:1.7;
+}
+
+/* effects */
+
+.heart{
+    position:absolute;
+    font-size:22px;
+    animation:fly 4s linear forwards;
+    pointer-events:none;
+}
+
+@keyframes fly{
+
+    from{
+        transform:translateY(0) scale(1);
+        opacity:1;
+    }
+
+    to{
+        transform:translateY(-240px) scale(1.8);
+        opacity:0;
+    }
+
+}
+
+/* teduh mode */
+
+.night{
+    background:linear-gradient(135deg,#0f1d33,#132743,#1d3557);
+}
+
+.night .container{
+    background:rgba(18,30,50,.45);
+    color:white;
+}
+
+.night .message-box{
+    background:rgba(255,255,255,.08);
+    color:#eef7ff;
+}
+
+.night .subtitle,
+.night .footer,
+.night .quote,
+.night .progress-text{
+    color:#d7e8ff;
+}
+
+.night .title{
+    color:#8dd8ff;
+}
+
+</style>
+</head>
+<body>
+
+<div class="blur1"></div>
+<div class="blur2"></div>
+<div class="blur3"></div>
+
+<div class="container">
+
+    <div class="title">
+        Cat Healing 🐾
+    </div>
+
+    <div class="subtitle">
+        kalauu duniaa sayangg lagii bikinn capeee bangeddd,<br>
+        sinii kikyy suruu kucing virtual kikyy buat nemeninn sayangg 🤏🏻🤍
+    </div>
+
+    <div class="cat-avatar" id="cat">
+        🐱
+    </div>
+
+    <div class="message-box" id="message">
+        kucing nyaa bakal senyumm kalauu di pencett, senyum kucing nyaa lucuu bangedd samaa kayaa Bayii mungill kikyyy lucuuu ehee 🐈
+    </div>
+
+    <div class="btn-group">
+
+        <button onclick="semangatMode()">
+            Semangatttt sayangg🤍
+        </button>
+
+        <button onclick="meowMode()">
+            Meow 🐾
+        </button>
+
+        <button onclick="hugMode()">
+            Peyukk kikyy sinii 🤍
+        </button>
+
+        <button onclick="nightMode()">
+            Mode quotes 🌙
+        </button>
+
+    </div>
+
+    <div class="progress-area">
+
+        <div class="progress-text">
+            Mood Recovery 📈
+        </div>
+
+        <div class="progress">
+            <div class="progress-bar" id="bar"></div>
+        </div>
+
+    </div>
+
+    <div class="quote" id="quote">
+        "bahkan kucingg ajaa boboo kalau lagii capee 🤏🏻 jadii Bayii mungill kikyyy juga harus istirahat oteyy?? jangan di paksaa yaa🤏🏻"
+    </div>
+
+    <div class="footer">
+        buat wanita cantii kesayangan kikyy yg udaa kuatt jalani hari harii nyaa🌸
+    </div>
+
+</div>
+
+<audio id="bgMusic" autoplay loop>
+    <source src="ssstik.io_1780026777269.mp3" type="audio/mp3">
+</audio>
+
+<audio id="teduhMusic" loop>
+    <source src="ssstik.io_1780027907267.mp3" type="audio/mp3">
+</audio>
+
+<script>
+
+const semangat = [
+
+"🐱 : bayii mungill kikyyy hebattt bangeddd bisa bertahan sejauh iniii, kikyy banggaa samaa sayangg 🤍",
+
+"🐾 : dunia boleh ribut, tapii bayii mungill kikyyy harus istirahat oteyy🤏🏻🤍",
+
+"😺 : mamm minum nyaaa jangann sampee lupaa yaaa, manusiaa lucuu jugaa butuuu energiii tauuu🤏🏻",
+
+"🐈 : pelan pelan aja gapapa kok 🌸",
+
+"🐱 : hari buruk ga akan selamanya, kikyyy yakinn ituu🤏🏻",
+
+"🐾 : maacii yaaa Bayii mungill kikyyy udaa bertahan sejauhh inii, be proud of yourself 🤍"
+
+];
+const meow = [
+
+"🐈 : meow meow meowww\n\nartinya : kamu jangan sedih terus nanti aku ikut sedih 😿",
+
+"🐱 : manusia lucu kok capek...\n\nsini aku temenin rebahan sambil purring ☁️",
+
+"😺 : kata dokter kucing\n\nlihat kucing 5 menit bisa nambah mood +200 😭",
+
+"🐾 : kamu tau ga?\n\nkucing virtual ini ditugasin khusus buat nemenin kamu",
+
+"🐱 : tadi aku meeting sama sesama kucing\n\nhasil rapat nya : kamu harus semangat 😤",
+
+"🐈 : meow meow meow\n\ntranslate : jangan lupa makan nanti berubah jadi sinyal E",
+
+"😺 : kalau capek jangan dipendem sendiri yaa\n\nnanti hati nya overheating 🫠",
+
+"🐾 : kucing ini lagi patroli buat ngusir bad mood dari kamu 🚓",
+
+"🐱 : aku bawain ikan nih 🐟\n\nwalau virtual tapi tulus",
+
+"🐈 : kamu istirahat dulu aja\n\nbiar aku yang lawan monster overthinking nya 😾",
+
+"😺 : katanya kamu lagi cape?\n\nberarti sekarang waktunya mode manja",
+
+"🐾 : meow meow...\n\nartinya : kamu hebat banget hari ini 🤍",
+
+"🐱 : jangan nangis yaa\n\nnanti aku ikut ngeong sedih 😭",
+
+"🐈 : kucing ini percaya\n\nbesok bakal jadi hari yang lebih ringan ☁️",
+
+"😺 : tenang ajaa\n\nkamu ditemenin pasukan kucing healing sekarang 🐱🐱🐱",
+
+"🐾 : +100 mood karena lihat kucing"
+
+];
+
+const quotes = [
+
+'"langit aja berubah warna tiap sore."',
+
+'"pelan pelan juga gapapa."',
+
+'"hari buruk bukan akhir cerita."',
+
+'"sayanggg juga boleh istirahat."'
+
+];
+
+const bgMusic = document.getElementById("bgMusic");
+const teduhMusic = document.getElementById("teduhMusic");
+
+let progress = 10;
+
+window.addEventListener("click",()=>{
+
+    bgMusic.play();
+
+},{ once:true });
+
+function semangatMode(){
+
+    const random = semangat[Math.floor(Math.random()*semangat.length)];
+
+    document.getElementById("message").innerHTML = random;
+
+    addMood();
+
+    effects();
+
+    changeQuote();
+
+}
+
+function meowMode(){
+
+    const random = meow[Math.floor(Math.random()*meow.length)];
+
+    document.getElementById("message").innerHTML =
+    random.replace(/\n/g,"<br>");
+
+    effects();
+
+}
+
+function hugMode(){
+
+    document.getElementById("message").innerHTML =
+    "🐱🤍<br><br>*kucing virtual lagi manja sambil nemenin dia istirahat*";
+
+    effects();
+
+}
+
+function nightMode(){
+
+    document.body.classList.toggle("night");
+
+    document.getElementById("message").innerHTML =
+    "🌙 mode quotes aktif...<br><br>sekaranggg waktunya tenanginn pikirann, sambil dengerin quotes inii semangat yaaa bayii mungill kikyyy 🤏🏻☁️";
+
+    if(teduhMusic.paused){
+
+        bgMusic.volume = 0.15;
+
+        teduhMusic.play();
+
+    }else{
+
+        teduhMusic.pause();
+
+        teduhMusic.currentTime = 0;
+
+        bgMusic.volume = 1;
+
+    }
+
+}
+
+function addMood(){
+
+    if(progress < 100){
+
+        progress += 10;
+
+        document.getElementById("bar").style.width =
+        progress + "%";
+
+    }
+
+}
+
+function changeQuote(){
+
+    const random = quotes[Math.floor(Math.random()*quotes.length)];
+
+    document.getElementById("quote").innerHTML = random;
+
+}
+
+function effects(){
+
+    for(let i=0;i<6;i++){
+
+        const heart = document.createElement("div");
+
+        heart.classList.add("heart");
+
+        const emoji = ["🐾","💙","✨","🤍","☁️"];
+
+        heart.innerHTML =
+        emoji[Math.floor(Math.random()*emoji.length)];
+
+        heart.style.left =
+        Math.random()*window.innerWidth + "px";
+
+        heart.style.top =
+        window.innerHeight - 80 + "px";
+
+        document.body.appendChild(heart);
+
+        setTimeout(()=>{
+
+            heart.remove();
+
+        },4000);
+
+    }
+
+}
+
+document.getElementById("cat").addEventListener("click",()=>{
+
+    const cat = document.getElementById("cat");
+
+    cat.innerHTML = "😺";
+
+    semangatMode();
+
+    effects();
+
+    setTimeout(()=>{
+
+        cat.innerHTML = "🐱";
+
+    },1000);
+
+});
+
+const cats = ["🐱","🐈","🐾","😺","☁️"];
+
+for(let i=0;i<12;i++){
+
+    const cat = document.createElement("div");
+
+    cat.classList.add("floating-cat");
+
+    cat.innerHTML =
+    cats[Math.floor(Math.random()*cats.length)];
+
+    cat.style.left =
+    Math.random()*100 + "%";
+
+    cat.style.animationDuration =
+    (Math.random()*12+10)+"s";
+
+    cat.style.fontSize =
+    (Math.random()*14+18)+"px";
+
+    document.body.appendChild(cat);
+
+}
+
+</script>
+
+</body>
+</html>
